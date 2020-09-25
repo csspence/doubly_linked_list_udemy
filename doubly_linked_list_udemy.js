@@ -131,4 +131,23 @@ class DoublyLinkedList {
     this.length++;
     return true;
   }
+
+  remove = (index) => {
+    let node;
+    if(index < 0 || index >= this.length) {
+      return false;
+    } else if(index === 0) {
+      this.shift();
+    } else if(index === this.length - 1) {
+      this.pop();
+    } else {
+      node = this.get(index);
+      node.prev.next = node.next;
+      node.next.prev = node.prev;
+      node.next = null;
+      node.prev = null;
+      this.length--;
+      return node;
+    }
+  }
 }
